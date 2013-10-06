@@ -21,6 +21,9 @@ defmodule ApplicationRouter do
       redirect(conn, to: "/login")
     else
       Logger.debug("#### from session:" <> access_token)
+      notification = get_session(conn, :notify)
+      conn = put_session(conn, :notify, nil)
+      conn = conn.assign(:notification, notification)
       user_name = Github.user(access_token)
       conn = conn.assign(:user_name, user_name)
       render conn, "index.html"
@@ -34,10 +37,15 @@ defmodule ApplicationRouter do
     pull_request = conn.params[:pull_request]
     conn = conn.assign(:pull_request, pull_request)
     reviewer = Github.random_reviewer(pull_request, access_token)
-    Logger.debug(inspect(reviewer))
-    conn = conn.assign(:reviewer_name, reviewer)
-    Github.ask_to_review(pull_request, reviewer, access_token)
-    render conn, "review.html"
+    if reviewer === nil do
+      conn = put_session(conn, :notify, "Reviewr not found!")
+      redirect(conn, to: "/")
+    else
+      Logger.debug(inspect(reviewer))
+      conn = conn.assign(:reviewer_name, reviewer)
+      Github.ask_to_review(pull_request, reviewer, access_token)
+      render conn, "review.html"
+    end
   end
 
   get "/login" do

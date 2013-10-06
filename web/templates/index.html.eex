@@ -6,6 +6,9 @@
 </head>
 <body>
   <h3><%= "Which pull request do you need to be reviewed @#{@user_name}?" %></h3>
+  <%- if @notification do %>
+    <p><%= @notification %></p>
+  <%- end %>
   <form name="input" action="review" method="POST">
     Pull request: <input type="text" name="pull_request">
     <input type="submit" value="Ask for review">
