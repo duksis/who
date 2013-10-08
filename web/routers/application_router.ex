@@ -16,7 +16,7 @@ defmodule ApplicationRouter do
 
   get "/" do
     conn = conn.fetch(:session)
-    access_token = get_session(conn, :access_token)
+    access_token = get_session(conn, :access_token) || System.get_env("GITHUB_OAUTH_KEY")
     if access_token === nil or String.length(access_token) !== 40 do
       redirect(conn, to: "/login")
     else
@@ -37,8 +37,8 @@ defmodule ApplicationRouter do
     pull_request = conn.params[:pull_request]
     conn = conn.assign(:pull_request, pull_request)
     reviewer = Github.random_reviewer(pull_request, access_token)
-    if reviewer === nil do
-      conn = put_session(conn, :notify, "Reviewr not found!")
+    if reviewer === [] do
+      conn = put_session(conn, :notify, "Reviewer not found!")
       redirect(conn, to: "/")
     else
       Logger.debug(inspect(reviewer))
