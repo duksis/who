@@ -1,4 +1,4 @@
-defmodule WhoWillReviewMyPr do
+defmodule Who do
   use Application.Behaviour
 
   @doc """
@@ -6,6 +6,6 @@ defmodule WhoWillReviewMyPr do
   application and its Dynamos.
   """
   def start(_type, _args) do
-    WhoWillReviewMyPr.Dynamo.start_link([max_restarts: 5, max_seconds: 5])
+    Who.Dynamo.start_link([max_restarts: 5, max_seconds: 5])
   end
 end

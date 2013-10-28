@@ -1,4 +1,4 @@
-defmodule WhoWillReviewMyPr.Dynamo do
+defmodule Who.Dynamo do
   use Dynamo
 
   config :dynamo,
@@ -6,7 +6,7 @@ defmodule WhoWillReviewMyPr.Dynamo do
     env: Mix.env,
 
     # The OTP application associated with this Dynamo
-    otp_app: :who_will_review_my_pr,
+    otp_app: :who,
 
     # The endpoint to dispatch requests to
     endpoint: ApplicationRouter,
