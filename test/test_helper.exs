@@ -1,8 +1,8 @@
-Dynamo.under_test(WhoWillReviewMyPr.Dynamo)
+Dynamo.under_test(Who.Dynamo)
 Dynamo.Loader.enable
 ExUnit.start
 
-defmodule WhoWillReviewMyPr.TestCase do
+defmodule Who.TestCase do
   use ExUnit.CaseTemplate
 
   # Enable code reloading on test cases

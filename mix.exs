@@ -1,20 +1,20 @@
-defmodule WhoWillReviewMyPr.Mixfile do
+defmodule Who.Mixfile do
   use Mix.Project
 
   def project do
-    [ app: :who_will_review_my_pr,
+    [ app: :who,
       version: "0.0.1",
-      dynamos: [WhoWillReviewMyPr.Dynamo],
+      dynamos: [Who.Dynamo],
       compilers: [:elixir, :dynamo, :app],
       env: [prod: [compile_path: "ebin"]],
-      compile_path: "tmp/#{Mix.env}/who_will_review_my_pr/ebin",
+      compile_path: "tmp/#{Mix.env}/who/ebin",
       deps: deps ]
   end
 
   # Configuration for the OTP application
   def application do
     [ applications: [:cowboy, :dynamo],
-      mod: { WhoWillReviewMyPr, [] } ]
+      mod: { Who, [] } ]
   end
 
   defp deps do
