@@ -1,4 +1,4 @@
-# Who [![Build Status](https://travis-ci.org/duksis/who_will_review_my_pr.png?branch=master)](https://travis-ci.org/duksis/who_will_review_my_pr)
+# Who [![Build Status](https://travis-ci.org/wimdu/who.png?branch=master)](https://travis-ci.org/wimdu/who)
 ===================
 
 http://who-will-review-my-pr.herokuapp.com
