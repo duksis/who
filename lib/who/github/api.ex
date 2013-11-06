@@ -5,31 +5,56 @@ defmodule Github.Api do
   end
 
   def access_token(code) do
-    HTTP.post(
+    http.post(
       uri.access_token(client_id, client_secret, code, redirect_uri)
     )
   end
 
   def user(access_token) do
-    HTTP.get(access_token, uri.user)
+    {:ok, resp } = JSON.decode(
+      http.get(access_token, uri.user)
+    )
+    resp
   end
 
   def collaborators(access_token, pull_request) do
-    [_, _, _, owner, repo, _, _] = String.split(pull_request, "/")
+    [owner, repo, _] = decompose_pr(pull_request)
 
-    HTTP.get(access_token, uri.collaborators(owner, repo))
+    {:ok, resp} = JSON.decode(
+      http.get(access_token, uri.collaborators(owner, repo))
+    )
+    resp
   end
 
   def contributors(access_token, pull_request) do
-    [_, _, _, owner, repo, _, _] = String.split(pull_request, "/")
+    [owner, repo, _] = decompose_pr(pull_request)
 
-    HTTP.get(access_token, uri.contributors(owner, repo))
+    {:ok, resp } = JSON.decode(
+      http.get(access_token, uri.contributors(owner, repo))
+    )
+    resp
+  end
+
+  def issue(access_token, pull_request) do
+    [owner, repo, number] = decompose_pr(pull_request)
+
+    {:ok, resp } = JSON.decode(
+      http.get(access_token, uri.issue(owner, repo, number))
+    )
+    resp
   end
 
   def post_comment(access_token, pull_request, comment) do
-    [_, _, _, owner, repo, _, number] = String.split(pull_request, "/")
+    [owner, repo, number] = decompose_pr(pull_request)
     request_body = "{ \"body\": \"#{comment}\" }"
-    HTTP.post(access_token, uri.comments(owner, repo, number), request_body)
+    http.post(access_token, uri.comments(owner, repo, number), request_body)
+  end
+
+  defp decompose_pr(path) do
+    case String.split(URI.parse(path).path, "/") do
+      [_, owner, repo, _, number] -> [owner, repo, number]
+      [_, owner, repo, _, number, _] -> [owner, repo, number]
+    end
   end
 
   defp client_id do
@@ -46,6 +71,14 @@ defmodule Github.Api do
 
   defp uri do
     Github.Uri
+  end
+
+  defp http do
+    if Mix.env == :prod do
+      HTTP
+    else
+      FakeHTTP
+    end
   end
 end
 

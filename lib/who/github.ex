@@ -11,7 +11,6 @@ defmodule Github do
 
   def user(access_token) do
     resp = api.user(access_token)
-    {:ok, resp } = JSON.decode(resp)
     HashDict.get(resp, "login")
   end
 
@@ -35,13 +34,11 @@ defmodule Github do
 
   defp collaborators(pull_request, access_token) do
     resp = api.collaborators(access_token, pull_request)
-    {:ok, resp } = JSON.decode(resp)
     Enum.map(resp, get_user_login(&1))
   end
 
   defp contributors(pull_request, access_token) do
     resp = api.contributors(access_token, pull_request)
-    {:ok, resp } = JSON.decode(resp)
     Enum.map(resp, get_contribution_author(&1))
   end
 

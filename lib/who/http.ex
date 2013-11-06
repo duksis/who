@@ -14,4 +14,3 @@ defmodule HTTP do
     System.cmd("curl -H 'Authorization: token #{access_token}' -XGET '#{uri}' 2>/dev/null")
   end
 end
-

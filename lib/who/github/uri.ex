@@ -27,5 +27,9 @@ defmodule Github.Uri do
   def comments(owner, repo, issue) do
     "https://api.github.com/repos/#{owner}/#{repo}/issues/#{issue}/comments"
   end
+
+  def issue(owner, repo, issue) do
+    "https://api.github.com/repos/#{owner}/#{repo}/issues/#{issue}"
+  end
 end
 
