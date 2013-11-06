@@ -20,7 +20,6 @@ defmodule ApplicationRouter do
     if access_token === nil or String.length(access_token) !== 40 do
       redirect(conn, to: "/login")
     else
-      Logger.debug("#### from session:" <> access_token)
       notification = get_session(conn, :notify)
       conn = put_session(conn, :notify, nil)
       conn = conn.assign(:notification, notification)
@@ -41,7 +40,6 @@ defmodule ApplicationRouter do
       conn = put_session(conn, :notify, "Reviewer not found!")
       redirect(conn, to: "/")
     else
-      Logger.debug(inspect(reviewer))
       conn = conn.assign(:reviewer_name, reviewer)
       Github.ask_to_review(pull_request, reviewer, access_token)
       render conn, "review.html"

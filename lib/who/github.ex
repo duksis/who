@@ -5,7 +5,6 @@ defmodule Github do
 
   def authenticate(code) do
     response = api.access_token(code)
-    Logger.debug(response)
     String.slice(response, 13, 40)
   end
 
@@ -19,9 +18,7 @@ defmodule Github do
     con = contributors(pull_request, access_token)
     if ListDict.size(con) == 0, do: con = contributors(pull_request, access_token)
     in_both = Common.members_of_both(con, col)
-    Logger.debug(inspect(in_both))
     shuffled = Common.shuffle(in_both)
-    Logger.debug(inspect(shuffled))
     Enum.take(shuffled,1)
   end
 
