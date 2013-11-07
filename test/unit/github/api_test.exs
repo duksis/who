@@ -19,4 +19,15 @@ defmodule Github.ApiTest do
       HashDict.has_key?(&1, "author")
     )
   end
+
+  test "issue/2 returns the issue details" do
+    assert HashDict.has_key?(
+      api.issue("valid access token", "/wimdu/who/pull/1"), "pull_request"
+    )
+  end
+
+  test "post_assignee/3 assigns user to pull request" do
+    assert {:ok, _} =
+      JSON.decode(api.post_assignee("valid access token", "/wimdu/who/pull/1", "duksis"))
+  end
 end

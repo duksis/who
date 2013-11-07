@@ -26,4 +26,10 @@ defmodule GithubTest do
 
     :meck.unload(Github.Api)
   end
+
+  test "ask_to_review/3 assigns reviewer to pull request" do
+    assert {:ok, _} = JSON.decode(
+      Github.ask_to_review("/wimdu/who/pulls/1", ["duksis"], "valid token")
+    )
+  end
 end

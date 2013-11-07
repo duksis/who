@@ -23,10 +23,17 @@ defmodule Github do
   end
 
   def ask_to_review(pull_request, reviewer, access_token) do
+    assing_to_pr(pull_request, reviewer, access_token)
     comment = "Hey @#{reviewer} would you have time to review this? [/®](http://who-will-review-my-pr.herokuapp.com)"
     resp = api.post_comment(access_token, pull_request, comment)
-    Logger.debug(resp)
     resp
+  end
+
+  defp assing_to_pr(pull_request, reviewer, access_token) do
+    issue = api.issue(access_token, pull_request)
+    if ListDict.size(reviewer) != 0 && HashDict.get(issue, "assignee") == nil do
+      api.post_assignee(access_token, pull_request, reviewer)
+    end
   end
 
   defp collaborators(pull_request, access_token) do

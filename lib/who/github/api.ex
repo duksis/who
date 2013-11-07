@@ -50,6 +50,12 @@ defmodule Github.Api do
     http.post(access_token, uri.comments(owner, repo, number), request_body)
   end
 
+  def post_assignee(access_token, pull_request, assignee) do
+    [owner, repo, number] = decompose_pr(pull_request)
+    request_body = "{ \"assignee\": \"#{assignee}\" }"
+    http.post(access_token, uri.issue(owner, repo, number), request_body)
+  end
+
   defp decompose_pr(path) do
     case String.split(URI.parse(path).path, "/") do
       [_, owner, repo, _, number] -> [owner, repo, number]
