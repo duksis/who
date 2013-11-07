@@ -2,5 +2,6 @@
   "cowlib": {:git, "git://github.com/extend/cowlib.git", "85b695c177da63f8b2651c88f8bc43ee511c4509", [{:ref, "0.2.0"}]},
   "dynamo": {:git, "git://github.com/elixir-lang/dynamo.git", "162444c02fcf7d8aa1c65dcd36d02fd2e2450a24", []},
   "json": {:git, "git://github.com/cblage/elixir-json.git", "9bac6d4767170bc71b91b8548d8dc8eb19fa938a", []},
+  "meck": {:git, "git://github.com/eproxus/meck.git", "1286aba1cb6bbd6c9fc3f817740758b224843ee7", []},
   "mimetypes": {:git, "git://github.com/spawngrid/mimetypes.git", "47d37a977a7d633199822bf6b08353007483d00f", []},
   "ranch": {:git, "git://github.com/extend/ranch.git", "41705752ffc7e3ecb96eef8374015ead4ca7f699", [{:ref, "0.8.5"}]} ]
