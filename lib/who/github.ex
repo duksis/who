@@ -13,12 +13,12 @@ defmodule Github do
     HashDict.get(resp, "login")
   end
 
-  def random_reviewer(pull_request, access_token) do
+  def random_reviewer(pull_request, current_user, access_token) do
     col = collaborators(pull_request, access_token)
     con = contributors(pull_request, access_token)
     if ListDict.size(con) == 0, do: con = contributors(pull_request, access_token)
     in_both = Common.members_of_both(con, col)
-    shuffled = Common.shuffle(in_both)
+    shuffled = Common.shuffle(in_both -- [current_user])
     Enum.take(shuffled,1)
   end
 

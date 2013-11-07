@@ -35,7 +35,8 @@ defmodule ApplicationRouter do
     conn = conn.fetch :params
     pull_request = conn.params[:pull_request]
     conn = conn.assign(:pull_request, pull_request)
-    reviewer = Github.random_reviewer(pull_request, access_token)
+    current_user = conn.params[:user_name]
+    reviewer = Github.random_reviewer(pull_request, current_user, access_token)
     if reviewer === [] do
       conn = put_session(conn, :notify, "Reviewer not found!")
       redirect(conn, to: "/")
