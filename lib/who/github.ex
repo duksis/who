@@ -13,7 +13,8 @@ defmodule Github do
     HashDict.get(resp, "login")
   end
 
-  def random_reviewer(pull_request, current_user, access_token) do
+  def random_reviewer(pull_request, access_token) do
+    current_user = user(access_token)
     col = collaborators(pull_request, access_token)
     con = contributors(pull_request, access_token)
     if ListDict.size(con) == 0, do: con = contributors(pull_request, access_token)
