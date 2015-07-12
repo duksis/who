@@ -4,7 +4,7 @@ defmodule GithubTest do
   test "oauth_uri" do
     assert Github.oauth_uri == "https://github.com/login/oauth/authorize" <>
       "?client_id=the_github_client_id&scope=repo" <>
-      "&redirect_uri=localhost%3A4000%2Fauthenticate"
+      "&redirect_uri=http://lvh.me:4000/authenticate"
   end
 
   test "random_reviewer/2 does not return the current user" do

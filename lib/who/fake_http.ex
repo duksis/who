@@ -1,5 +1,7 @@
 defmodule FakeHTTP do
-  defexception UnexpectedRequestError, params: [] do
+  defmodule UnexpectedRequestError do
+    defexception [:params]
+
     def message(exception) do
       "received an unexpected request #{inspect(exception.params)}"
     end

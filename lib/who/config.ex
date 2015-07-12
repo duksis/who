@@ -12,6 +12,6 @@ defmodule Config do
   end
 
   def root_url do
-    System.get_env("ROOT_URL") || "localhost:4000"
+    System.get_env("ROOT_URL") || "http://lvh.me:4000"
   end
 end

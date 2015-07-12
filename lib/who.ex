@@ -1,11 +1,30 @@
 defmodule Who do
-  use Application.Behaviour
+  use Application
 
-  @doc """
-  The application callback used to start this
-  application and its Dynamos.
-  """
+  # See http://elixir-lang.org/docs/stable/elixir/Application.html
+  # for more information on OTP Applications
   def start(_type, _args) do
-    Who.Dynamo.start_link([max_restarts: 5, max_seconds: 5])
+    import Supervisor.Spec, warn: false
+
+    children = [
+      # Start the endpoint when the application starts
+      supervisor(Who.Endpoint, []),
+      # Start the Ecto repository
+      worker(Who.Repo, []),
+      # Here you could define other workers and supervisors as children
+      # worker(Who.Worker, [arg1, arg2, arg3]),
+    ]
+
+    # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html
+    # for other strategies and supported options
+    opts = [strategy: :one_for_one, name: Who.Supervisor]
+    Supervisor.start_link(children, opts)
+  end
+
+  # Tell Phoenix to update the endpoint configuration
+  # whenever the application is updated.
+  def config_change(changed, _new, removed) do
+    Who.Endpoint.config_change(changed, removed)
+    :ok
   end
 end

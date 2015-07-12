@@ -10,14 +10,14 @@ defmodule Github do
 
   def user(access_token) do
     resp = api.user(access_token)
-    HashDict.get(resp, "login")
+    Map.get(resp, "login")
   end
 
   def random_reviewer(pull_request, access_token) do
     current_user = user(access_token)
     col = collaborators(pull_request, access_token)
     con = contributors(pull_request, access_token)
-    if ListDict.size(con) == 0, do: con = contributors(pull_request, access_token)
+    if Dict.size(con) == 0, do: con = contributors(pull_request, access_token)
     in_both = Common.members_of_both(con, col)
     shuffled = Common.shuffle(in_both -- [current_user])
     Enum.take(shuffled,1)
@@ -32,28 +32,28 @@ defmodule Github do
 
   defp assing_to_pr(pull_request, reviewer, access_token) do
     issue = api.issue(access_token, pull_request)
-    if ListDict.size(reviewer) != 0 && HashDict.get(issue, "assignee") == nil do
+    if Dict.size(reviewer) != 0 && Map.get(issue, "assignee") == nil do
       api.post_assignee(access_token, pull_request, reviewer)
     end
   end
 
   defp collaborators(pull_request, access_token) do
     resp = api.collaborators(access_token, pull_request)
-    Enum.map(resp, get_user_login(&1))
+    Enum.map(resp, &get_user_login/1)
   end
 
   defp contributors(pull_request, access_token) do
     resp = api.contributors(access_token, pull_request)
-    Enum.map(resp, get_contribution_author(&1))
+    Enum.map(resp, &get_contribution_author/1)
   end
 
   defp get_user_login(user) do
-    HashDict.get(user, "login")
+    Map.get(user, "login")
   end
 
   defp get_contribution_author(contribution) do
     get_user_login(
-      HashDict.get(contribution, "author")
+      Map.get(contribution, "author")
     )
   end
 

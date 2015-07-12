@@ -16,12 +16,12 @@ defmodule Github.ApiTest do
   test "contributors/2 returns a list of repo contributors" do
     assert Enum.all?(
       api.contributors("valid_access_token", "/wimdu/who/pull/1"),
-      HashDict.has_key?(&1, "author")
+      fn(contributor) -> Map.has_key?(contributor, "author") end
     )
   end
 
   test "issue/2 returns the issue details" do
-    assert HashDict.has_key?(
+    assert Map.has_key?(
       api.issue("valid access token", "/wimdu/who/pull/1"), "pull_request"
     )
   end

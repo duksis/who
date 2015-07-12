@@ -1,13 +1,6 @@
-Dynamo.under_test(Who.Dynamo)
-Dynamo.Loader.enable
 ExUnit.start
 
-defmodule Who.TestCase do
-  use ExUnit.CaseTemplate
-
-  # Enable code reloading on test cases
-  setup do
-    Dynamo.Loader.enable
-    :ok
-  end
-end
+# Create the database, run migrations, and start the test transaction.
+Mix.Task.run "ecto.create", ["--quiet"]
+Mix.Task.run "ecto.migrate", ["--quiet"]
+Ecto.Adapters.SQL.begin_test_transaction(Who.Repo)

@@ -15,8 +15,8 @@ with your github account and select a PR you want to be reviewed.
 
 * clone repository
 * make sure Erlang and Elixir is up to date
-* run specs `MIX_ENV=test mix do deps.get, compile, test`
-* start development server `mix server`
+* run specs `MIX_ENV=test mix do deps.get, test`
+* start development server `mix phoenix.server`
 * access your app under [localhost:4000](http://localhost:4000)
 * start interactive application console `iex -S mix`
 
@@ -29,6 +29,6 @@ Resources:
 * [Elixir website](http://elixir-lang.org/)
 * [Elixir getting started guide](http://elixir-lang.org/getting_started/1.html)
 * [Elixir docs](http://elixir-lang.org/docs)
-* [Dynamo source code](https://github.com/elixir-lang/dynamo)
-* [Dynamo guides](https://github.com/elixir-lang/dynamo#learn-more)
-* [Dynamo docs](http://elixir-lang.org/docs/dynamo)
+* [Phoenix source code](https://github.com/phoenixframework/phoenix)
+* [Phoenix guides](http://www.phoenixframework.org/docs/overview)
+* [Phoenix docs](http://hexdocs.pm/phoenix/)
