@@ -1,0 +1,86 @@
+[
+  {
+    "total": 27,
+    "weeks": [
+      {
+        "w": 1377993600,
+        "a": 380,
+        "d": 11,
+        "c": 2
+      },
+      {
+        "w": 1378598400,
+        "a": 182,
+        "d": 135,
+        "c": 8
+      },
+      {
+        "w": 1379203200,
+        "a": 0,
+        "d": 0,
+        "c": 0
+      },
+      {
+        "w": 1379808000,
+        "a": 37,
+        "d": 8,
+        "c": 4
+      },
+      {
+        "w": 1380412800,
+        "a": 81,
+        "d": 52,
+        "c": 5
+      },
+      {
+        "w": 1381017600,
+        "a": 117,
+        "d": 37,
+        "c": 5
+      },
+      {
+        "w": 1381622400,
+        "a": 0,
+        "d": 0,
+        "c": 0
+      },
+      {
+        "w": 1382227200,
+        "a": 282,
+        "d": 282,
+        "c": 1
+      },
+      {
+        "w": 1382832000,
+        "a": 31,
+        "d": 17,
+        "c": 2
+      },
+      {
+        "w": 1383436800,
+        "a": 0,
+        "d": 0,
+        "c": 0
+      }
+    ],
+    "author": {
+      "login": "duksis",
+      "id": 222101,
+      "avatar_url": "https://2.gravatar.com/avatar/ad4e99cf95c3ab9a9c76081e820d0387?d=https%3A%2F%2Fidenticons.github.com%2F8f5d8f0f02c43ace28c6115ba2a634d2.png&r=x",
+      "gravatar_id": "ad4e99cf95c3ab9a9c76081e820d0387",
+      "url": "https://api.github.com/users/duksis",
+      "html_url": "https://github.com/duksis",
+      "followers_url": "https://api.github.com/users/duksis/followers",
+      "following_url": "https://api.github.com/users/duksis/following{/other_user}",
+      "gists_url": "https://api.github.com/users/duksis/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/duksis/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/duksis/subscriptions",
+      "organizations_url": "https://api.github.com/users/duksis/orgs",
+      "repos_url": "https://api.github.com/users/duksis/repos",
+      "events_url": "https://api.github.com/users/duksis/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/duksis/received_events",
+      "type": "User",
+      "site_admin": false
+    }
+  }
+]
