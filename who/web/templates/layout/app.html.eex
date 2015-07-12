@@ -9,6 +9,7 @@
 
     <title>Who will review my PR?</title>
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
+    <link rel="shortcut icon" href="/static/favicon.ico" />
   </head>
 
   <body>

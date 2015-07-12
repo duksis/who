@@ -16,6 +16,7 @@ defmodule Who.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
+    post "/review", PageController, :create
 
     get "/login", SessionController, :index
     get "/logout", SessionController, :destroy

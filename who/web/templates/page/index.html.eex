@@ -1,5 +1,6 @@
 <h3><%= "Which pull request do you need to be reviewed @#{@user}?" %></h3>
 <form name="input" action="review" method="POST">
+  <input type="hidden" name="_csrf_token" value="<%= get_csrf_token %>">
   Pull request: <input type="text" name="pull_request">
   <input type="submit" value="Ask for review">
 </form>
